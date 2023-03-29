@@ -1,7 +1,17 @@
 from flask import Flask, render_template, url_for,request,redirect
-import openai
 from datetime import datetime
-openai.api_key = "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"
+import openai
+import os
+
+# Load OpenAI API key from environment variable or file
+if "OPENAI_API_KEY" in os.environ:
+    api_key = os.environ["OPENAI_API_KEY"]
+else:
+    with open("openai_api_key.txt") as f:
+        api_key = f.read().strip()
+
+# Set OpenAI API key
+openai.api_key = api_key
 app = Flask(__name__)
 
 
